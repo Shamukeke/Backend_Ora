@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Lit ENVIRONMENT=development|production dans .env
 # puis utilise le préfixe DEV_ ou PROD_ pour toutes les variables
-_ENV = config('ENVIRONMENT', default='development').upper()[:4]   # 'DEV' ou 'PROD'
+_ENV = 'PROD' if config('ENVIRONMENT', default='development').lower() == 'production' else 'DEV'
 
 def env(key, default=None, **kwargs):
     return config(f'{_ENV}_{key}', default=default, **kwargs)
